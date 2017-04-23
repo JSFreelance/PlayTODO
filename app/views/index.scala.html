@@ -1,0 +1,18 @@
+
+@import scala.collection.mutable.ListBuffer
+@(taskForm: Form[Task], Tasks: ListBuffer[Task])(implicit messages: Messages)
+
+
+@helper.form(action = routes.HomeController.insertUser()) {
+    @helper.inputText(taskForm("text"))
+    <button type="submit" name="action" value="edit">Submit</button>
+}
+
+<ul>
+    @for(task <- Tasks){
+        <li>@task.text</li>
+    }
+</ul>
+
+
+
