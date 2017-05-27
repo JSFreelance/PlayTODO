@@ -1,7 +1,6 @@
 package controllers
 
 import javax.inject._
-
 import play.api._
 import play.api.mvc._
 import models.Task
@@ -28,7 +27,7 @@ class HomeController @Inject() extends Controller
   }
 
 
-  def insertUser = Action(parse.form(taskForm)) { implicit request =>
+  def insertTask = Action(parse.form(taskForm)) { implicit request =>
     val taskData = request.body
     val newTask = Task(taskData.text)
     data += newTask
