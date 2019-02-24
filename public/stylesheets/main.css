@@ -1,0 +1,18 @@
+
+dd {
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.custom-wrapper {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    text-align: center;
+}
+
+.btn-outline-primary{
+    margin: 0;
+    float: right;
+}

@@ -1,18 +1,21 @@
 
 @import scala.collection.mutable.ListBuffer
+
+
 @(taskForm: Form[Task], Tasks: ListBuffer[Task])(implicit messages: Messages)
+<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/main.css")'>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+<div class="custom-wrapper">
+    <h1>TODO list</h1>
+    @helper.form(action = routes.HomeController.insertTask()) {
+        @helper.inputText(taskForm("text"), 'class -> "form-control", '_help -> "", '_label -> "Enter text:")
 
-
-@helper.form(action = routes.HomeController.insertTask()) {
-    @helper.inputText(taskForm("text"))
-    <button type="submit" name="action" value="edit">Submit</button>
-}
-
-<ul>
-    @for(task <- Tasks){
-        <li>@task.text</li>
+        <button class="btn btn-secondary" type="submit" name="action" value="edit">Submit</button>
     }
-</ul>
 
-
-
+    <ul class="list-group">
+    @for(task <- Tasks.reverse){
+        <li class="list-group-item">@task.text</li>
+    }
+    </ul>
+</div>

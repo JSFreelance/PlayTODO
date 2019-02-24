@@ -26,8 +26,9 @@ class HomeController @Inject() extends Controller
      Ok(views.html.index(taskForm, data))
   }
 
-
-  def insertTask = Action(parse.form(taskForm)) { implicit request =>
+  def insertTask = Action(parse.form(taskForm, onErrors = (formWithErrors: Form[Task]) => {
+    Redirect(routes.HomeController.index())
+  })) { implicit request =>
     val taskData = request.body
     val newTask = Task(taskData.text)
     data += newTask

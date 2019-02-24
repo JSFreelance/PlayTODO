@@ -5,3 +5,4 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 POST    /insert_task                controllers.HomeController.insertTask()
+GET     /public/*file      controllers.Assets.at(path="/public", file)
