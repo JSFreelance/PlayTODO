@@ -1,21 +1,26 @@
 
 @import scala.collection.mutable.ListBuffer
 
-
 @(taskForm: Form[Task], Tasks: ListBuffer[Task])(implicit messages: Messages)
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="@routes.Assets.at("../../public/javascripts/main.js")"></script>
+</head>
 <link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/main.css")'>
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+
 <div class="custom-wrapper">
     <h1>TODO list</h1>
     @helper.form(action = routes.HomeController.insertTask()) {
-        @helper.inputText(taskForm("text"), 'class -> "form-control", '_help -> "", '_label -> "Enter text:")
+        @helper.inputText(taskForm("text"), 'class -> "form-control", 'id -> 1,'_help -> "", '_label -> "Enter text:")
+        <!--@helper.inputText(taskForm("id"), 'id -> 1,'_help -> "", '_label -> "")-->
 
         <button class="btn btn-secondary" type="submit" name="action" value="edit">Submit</button>
     }
 
     <ul class="list-group">
     @for(task <- Tasks.reverse){
-        <li class="list-group-item">@task.text</li>
+        <li class="list-group-item" id="@task.id"><input class="mybtn form-control" id="@task.id" type="text" value="@task.text"/> <button id="@task.id" class="btnDeleteTask btn btn-danger" type="button">Delete</button></li>
     }
     </ul>
 </div>

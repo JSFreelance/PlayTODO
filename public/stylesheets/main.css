@@ -16,3 +16,7 @@ dd {
     margin: 0;
     float: right;
 }
+
+.btn-danger{
+    margin-top: 10px;
+}

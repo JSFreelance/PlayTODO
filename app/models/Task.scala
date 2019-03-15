@@ -1,3 +1,3 @@
 package models
 
-case class Task(text: String)
+case class Task(id: Option[Int], text: String)
