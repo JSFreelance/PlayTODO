@@ -14,6 +14,9 @@ import scala.concurrent.ExecutionContext.Implicits.global
 @Singleton
 class HomeController @Inject() (dbService: dbService) extends Controller
 {
+  {
+    dbService.initDB()
+  }
 
   val taskForm = Form(
     mapping(

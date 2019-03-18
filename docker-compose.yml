@@ -1,0 +1,26 @@
+version: '2'
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+    build: './docker/postgres'
+    volumes:
+      - .:/code
+    networks:
+      wlan1:
+        aliases:
+          - db
+  api:
+    build: .
+    networks:
+      - wlan1
+    depends_on:
+      - "postgres"
+    ports:
+      - "9000:9000"
+    command: /svc/bin/start -Dhttps.port=9443 -Dplay.crypto.secret=secret
+    #volumes:
+    # - .:/code
+networks:
+ wlan1:
+    driver: bridge

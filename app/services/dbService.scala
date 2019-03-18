@@ -16,7 +16,10 @@ class dbService @Inject()(protected val dbConfigProvider: DatabaseConfigProvider
   val setup = DBIO.seq(
     (Tasks.schema).create
   )
-  val setupFuture = db.run(setup)
+
+  def initDB(){
+    db.run(setup)
+  }
 
   def all(): Future[Seq[Task]] = db.run(Tasks.result)
 
